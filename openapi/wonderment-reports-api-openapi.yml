@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info:
+  title: Wonderment Delivery Promise Reports API
+  description: Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.
+  version: 2022-10
+  contact:
+    name: Wonderment Support
+    url: https://help.wonderment.com/
+servers:
+- url: https://api.wonderment.com
+  description: Production
+security:
+- apiKeyHeader: []
+tags:
+- name: Reports
+  description: List and download shipment report exports.
+paths:
+  /2022-10/reports:
+    get:
+      tags:
+      - Reports
+      summary: List reports
+      description: List report exports for the authenticated shop. Reports are returned newest first.
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of reports to return. Defaults to 100. Must be between 1 and 500.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 500
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Report export file name.
+                    status:
+                      type: string
+                      description: Report export status, such as finished.
+                    downloadUrl:
+                      type: string
+                      nullable: true
+                      description: Download URL for finished, unexpired reports.
+                    createdAt:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    expiresAt:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    expired:
+                      type: boolean
+                    rowCount:
+                      type: integer
+                      nullable: true
+                    createdBy:
+                      type: string
+                      nullable: true
+                    scheduledReport:
+                      type: object
+                      nullable: true
+                      properties:
+                        frequencyTimeUnit:
+                          type: string
+                          nullable: true
+                        frequencyTimeAmount:
+                          type: integer
+                          nullable: true
+              example:
+              - name: 20260407T123906_shipments_report.csv.zip
+                status: finished
+                downloadUrl: https://api.wonderment.com/api/shipment/report/download/20260407T123906_shipments_report.csv.zip
+                createdAt: '2026-04-07T12:39:06.000Z'
+                expiresAt: '2026-07-06T12:39:06.000Z'
+                expired: false
+                rowCount: 1234
+                createdBy: user@example.com
+                scheduledReport:
+                  frequencyTimeUnit: days
+                  frequencyTimeAmount: 7
+        '400':
+          description: Invalid limit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: limit must be between 1 and 500
+        '401':
+          description: Unauthorized
+      operationId: listReports
+  /api/shipment/report/download/{path}:
+    get:
+      tags:
+      - Reports
+      summary: Download report
+      description: Download a finished report export by file name. Use the `name` value returned by the list reports endpoint, URL-encoded when it contains spaces or other special characters.
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: URL-encoded report file name returned as `name` from the list reports endpoint.
+        schema:
+          type: string
+          example: 20260421T0900_Courier%20claims%20-%20UK.csv.zip
+      responses:
+        '200':
+          description: Report file download.
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '302':
+          description: Redirects when the report file cannot be found for the authenticated shop or cannot be loaded.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Unauthorized
+      operationId: downloadReport
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: X-Wonderment-Access-Token
+      in: header
+      description: 'Wonderment API access token. Format: sk_live_<shop>_<secret>. Send in the X-Wonderment-Access-Token header over HTTPS.'

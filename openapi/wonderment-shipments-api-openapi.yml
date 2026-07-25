@@ -1,0 +1,366 @@
+openapi: 3.0.3
+info:
+  title: Wonderment Delivery Promise Shipments API
+  description: Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.
+  version: 2022-10
+  contact:
+    name: Wonderment Support
+    url: https://help.wonderment.com/
+servers:
+- url: https://api.wonderment.com
+  description: Production
+security:
+- apiKeyHeader: []
+tags:
+- name: Shipments
+  description: Search shipments and tracking events for the authenticated shop.
+paths:
+  /2022-10/shipments/search/{searchTerm}:
+    get:
+      tags:
+      - Shipments
+      description: Search shipments for the authenticated shop by order name or tracking code. Requests require a Wonderment API access token with shipment read access. Some shops also require customer verification with the optional `t` query parameter.
+      parameters:
+      - name: searchTerm
+        in: path
+        required: true
+        description: Order name or tracking code associated with the shipment.
+        schema:
+          type: string
+      - name: t
+        in: query
+        required: false
+        description: Base64-encoded customer verification payload. When provided, it can override `searchTerm` with its `query` value and should include the customer `email` or `phone`. Required only when customer search authentication is enabled for the shop.
+        schema:
+          type: string
+          example: eyJxdWVyeSI6IjEwMDEiLCJlbWFpbCI6ImN1c3RvbWVyQGV4YW1wbGUuY29tIn0=
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                nullable: true
+                description: Returns null when no matching order or tracking code is found.
+                properties:
+                  name:
+                    type: string
+                    description: Order name for the matched shipment search result.
+                  shipments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        trackingUrl:
+                          type: string
+                          nullable: true
+                        trackingCode:
+                          type: string
+                        carrierName:
+                          type: string
+                        eta:
+                          type: string
+                          nullable: true
+                          description: Estimated delivery timestamp when available. Pending fallback responses may return the literal value pending.
+                        serviceLevel:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            token:
+                              type: string
+                        order:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Numeric Shopify order ID, returned without the gid://shopify/Order/ prefix.
+                            name:
+                              type: string
+                              description: 'Shopify order name, such as #1001.'
+                        statusDetails:
+                          type: object
+                          properties:
+                            trackingCode:
+                              type: string
+                            details:
+                              type: string
+                            status:
+                              type: string
+                              description: Wonderment shipment status.
+                            substatus:
+                              type: string
+                              description: Carrier-provided substatus.
+                            date:
+                              type: string
+                              description: Event timestamp. When timezone data is available, this uses the event timezone value.
+                            city:
+                              type: string
+                              nullable: true
+                            state:
+                              type: string
+                              nullable: true
+                            zip:
+                              type: string
+                              nullable: true
+                            country:
+                              type: string
+                              nullable: true
+                            trackingUrl:
+                              type: string
+                              nullable: true
+                            eta:
+                              type: string
+                              nullable: true
+                            isTimezoneProvided:
+                              type: boolean
+                              nullable: true
+                              description: Whether the event timestamp included an explicit timezone.
+                            displayTimezone:
+                              type: string
+                              nullable: true
+                              description: Display timezone for the event location, when available.
+                            createdAt:
+                              type: string
+                              nullable: true
+                              description: Timestamp when the event was stored.
+                            locationDisplay:
+                              type: string
+                              nullable: true
+                          description: Most recent shipment event. Omitted when the shipment has no non-expired events.
+                        events:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              trackingCode:
+                                type: string
+                              details:
+                                type: string
+                              status:
+                                type: string
+                                description: Wonderment shipment status.
+                              substatus:
+                                type: string
+                                description: Carrier-provided substatus.
+                              date:
+                                type: string
+                                description: Event timestamp. When timezone data is available, this uses the event timezone value.
+                              city:
+                                type: string
+                                nullable: true
+                              state:
+                                type: string
+                                nullable: true
+                              zip:
+                                type: string
+                                nullable: true
+                              country:
+                                type: string
+                                nullable: true
+                              trackingUrl:
+                                type: string
+                                nullable: true
+                              eta:
+                                type: string
+                                nullable: true
+                              isTimezoneProvided:
+                                type: boolean
+                                nullable: true
+                                description: Whether the event timestamp included an explicit timezone.
+                              displayTimezone:
+                                type: string
+                                nullable: true
+                                description: Display timezone for the event location, when available.
+                              createdAt:
+                                type: string
+                                nullable: true
+                                description: Timestamp when the event was stored.
+                              locationDisplay:
+                                type: string
+                                nullable: true
+                        lineItems:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              trackingCode:
+                                type: string
+                              lineItemId:
+                                type: string
+                                description: Numeric Shopify line item ID, returned without the gid://shopify/LineItem/ prefix.
+                              productImage:
+                                type: string
+                                nullable: true
+                                description: Image URL when available; may be an empty string.
+                              productName:
+                                type: string
+                                description: Product title stored from Shopify.
+                              variantName:
+                                type: string
+                                nullable: true
+                                description: Variant title stored from Shopify; may be an empty string.
+                              variantImage:
+                                type: string
+                                nullable: true
+                                description: Image URL when available; may be an empty string.
+                              sku:
+                                type: string
+                                nullable: true
+                                description: SKU stored from Shopify; may be an empty string.
+                              quantity:
+                                type: integer
+                                nullable: true
+                                description: Fulfilled quantity for this line item when available, otherwise the order line item quantity.
+                        date:
+                          type: string
+                          nullable: true
+                          description: Present for pending/unfulfilled order fallback responses; ISO timestamp when included.
+              examples:
+                found:
+                  summary: Shipment found
+                  value:
+                    name: '#1001'
+                    shipments:
+                    - trackingUrl: https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345
+                      trackingCode: '9400111206213767912345'
+                      carrierName: USPS
+                      eta: '2026-04-24'
+                      serviceLevel:
+                        name: USPS Ground Advantage
+                        token: usps_ground_advantage
+                      order:
+                        id: '1234567890'
+                        name: '#1001'
+                      statusDetails:
+                        trackingCode: '9400111206213767912345'
+                        details: Delivered, In/At Mailbox
+                        status: DELIVERED
+                        substatus: delivered
+                        date: '2026-04-24T14:32:00'
+                        city: Austin
+                        state: TX
+                        zip: '78701'
+                        country: US
+                        trackingUrl: https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345
+                        eta: '2026-04-24'
+                        createdAt: 2026-04-24T14:36:12+0000
+                        locationDisplay: Austin, TX, 78701, US
+                        isTimezoneProvided: false
+                        displayTimezone: America/Chicago
+                      events:
+                      - trackingCode: '9400111206213767912345'
+                        details: Shipping label created
+                        status: PRE_TRANSIT
+                        substatus: information_received
+                        date: '2026-04-21T09:15:00'
+                        city: Austin
+                        state: TX
+                        zip: '78701'
+                        country: US
+                        trackingUrl: https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345
+                        eta: '2026-04-24'
+                        createdAt: 2026-04-21T09:18:03+0000
+                        locationDisplay: Austin, TX, 78701, US
+                        isTimezoneProvided: false
+                        displayTimezone: America/Chicago
+                      - trackingCode: '9400111206213767912345'
+                        details: Delivered, In/At Mailbox
+                        status: DELIVERED
+                        substatus: delivered
+                        date: '2026-04-24T14:32:00'
+                        city: Austin
+                        state: TX
+                        zip: '78701'
+                        country: US
+                        trackingUrl: https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345
+                        eta: '2026-04-24'
+                        createdAt: 2026-04-24T14:36:12+0000
+                        locationDisplay: Austin, TX, 78701, US
+                        isTimezoneProvided: false
+                        displayTimezone: America/Chicago
+                      lineItems:
+                      - trackingCode: '9400111206213767912345'
+                        lineItemId: '9876543210'
+                        productImage: https://cdn.shopify.com/s/files/example/product.jpg
+                        productName: Wonderment T-Shirt
+                        variantName: Medium / Black
+                        variantImage: https://cdn.shopify.com/s/files/example/variant.jpg
+                        sku: WM-TSHIRT-M-BLK
+                        quantity: 1
+                notFound:
+                  summary: No matching shipment
+                  value: null
+                pending:
+                  summary: Order received, no tracking yet
+                  value:
+                    name: '#1002'
+                    shipments:
+                    - trackingCode: ''
+                      trackingUrl: null
+                      carrierName: ''
+                      date: '2026-04-21T09:15:00.000Z'
+                      eta: pending
+                      serviceLevel:
+                        name: ''
+                        token: ''
+                      statusDetails:
+                        status: PENDING
+                        substatus: order_received
+                        date: '2026-04-21T09:15:00.000Z'
+                        details: Order has been received
+                      lineItems: []
+                      events: []
+                      order:
+                        id: '1234567891'
+                        name: '#1002'
+        '400':
+          description: Missing or invalid search term.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Invalid request. Must include search term.
+        '401':
+          description: Authentication failed or customer verification failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                authenticationFailed:
+                  value:
+                    message: '401: Authentication Failed'
+                orderNotFound:
+                  value:
+                    message: We couldn't find that order
+        '402':
+          description: Shop does not have an active paid plan for API access.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Upgrade to a Wonderment paid plan for access.
+        '403':
+          description: Token does not include shipment read access.
+      summary: Search shipments
+      operationId: searchShipments
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: X-Wonderment-Access-Token
+      in: header
+      description: 'Wonderment API access token. Format: sk_live_<shop>_<secret>. Send in the X-Wonderment-Access-Token header over HTTPS.'
