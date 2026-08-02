@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wonderment-openapi.json
+format: custom
+note: >-
+  Derived from the 3xx/4xx responses documented in the harvested OpenAPI. Error
+  bodies are plain JSON, not RFC 9457 problem+json. Two envelope shapes are used:
+  {"message": "..."} for validation errors and {"error": "..."} for auth errors.
+envelopes:
+- shape: '{"message": "string"}'
+  used_by: [listReports 400, getDeliveryPredictions 400, getDeliveryPredictions 404]
+- shape: '{"error": "string"}'
+  used_by: [downloadReport 401]
+problems:
+- status: 400
+  title: Invalid request parameter
+  detail: 'Example: "limit must be between 1 and 500".'
+  envelope: message
+  source_operation: openapi/wonderment-openapi.json#listReports
+- status: 400
+  title: Invalid delivery-prediction request
+  envelope: message
+  source_operation: openapi/wonderment-openapi.json#getDeliveryPredictions
+- status: 401
+  title: Unauthorized
+  detail: Missing or invalid X-Wonderment-Access-Token.
+  envelope: error
+  source_operation: openapi/wonderment-openapi.json#downloadReport
+- status: 404
+  title: No predictions found
+  envelope: message
+  source_operation: openapi/wonderment-openapi.json#getDeliveryPredictions
+- status: 302
+  title: Report not found / cannot be loaded
+  detail: Download redirects when the report file cannot be found for the authenticated shop.
+  source_operation: openapi/wonderment-openapi.json#downloadReport

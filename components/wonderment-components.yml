@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://wonderment.readme.io/reference/examples
+note: >-
+  Client-side / embeddable surfaces Wonderment publishes for merchants, distinct
+  from server-side SDKs (none published). The Tracking Block is Wonderment's
+  embeddable order-tracking UI, usable headlessly against the shipments search API.
+components:
+- family: Tracking Page
+  name: Wonderment Tracking Block
+  kind: embeddable-ui
+  description: >-
+    Branded self-serve order-tracking page/block merchants embed on their store.
+    A "headless" variant drives a custom UI from the shipment search API.
+  docs:
+  - https://wonderment.readme.io/reference/examples
+  - https://help.wonderment.com/en/categories/1028097-tracking-page
+  related_operation: openapi/wonderment-openapi.json#searchShipments

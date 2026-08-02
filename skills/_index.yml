@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/wonderment-openapi.json
+skills:
+- file: wonderment-track-shipment.md
+  name: Track a shipment
+  api: openapi/wonderment-openapi.json
+  operations: [searchShipments]
+- file: wonderment-export-report.md
+  name: Export and download a shipment report
+  api: openapi/wonderment-openapi.json
+  operations: [listReports, downloadReport]
+- file: wonderment-delivery-promise.md
+  name: Quote a delivery date
+  api: openapi/wonderment-openapi.json
+  operations: [getDeliveryPredictions]

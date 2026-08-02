@@ -1,0 +1,46 @@
+arazzo: 1.0.1
+info:
+  title: Wonderment — export and download a shipment report
+  version: 1.0.0
+  description: >-
+    List the authenticated shop's shipment report exports and download the most
+    recent finished, non-expired report.
+sourceDescriptions:
+- name: wondermentApi
+  url: ../openapi/wonderment-openapi.json
+  type: openapi
+workflows:
+- workflowId: exportAndDownloadReport
+  summary: List reports then download a finished one.
+  description: >-
+    Calls listReports to find a finished report, then downloadReport to fetch
+    the zip by its file name.
+  inputs:
+    type: object
+    properties:
+      limit:
+        type: integer
+        default: 100
+  steps:
+  - stepId: listReports
+    description: List shipment report exports, newest first.
+    operationId: listReports
+    parameters:
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      reportName: $response.body#/0/name
+  - stepId: downloadReport
+    description: Download the newest report by file name.
+    operationId: downloadReport
+    parameters:
+    - name: path
+      in: path
+      value: $steps.listReports.outputs.reportName
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    downloadedReport: $steps.listReports.outputs.reportName

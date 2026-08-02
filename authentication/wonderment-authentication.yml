@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wonderment-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-Wonderment-Access-Token
+  description: 'Wonderment API access token. Format: sk_live_<shop>_<secret>. Send in the X-Wonderment-Access-Token
+    header over HTTPS.'
+  sources:
+  - openapi/wonderment-openapi.json

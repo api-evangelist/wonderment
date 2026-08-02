@@ -1,0 +1,13 @@
+# Wonderment Documentation
+
+> Documentation for Wonderment
+
+## API Reference
+- [Overview](https://wonderment.readme.io/reference/overview.md)
+- [Authentication](https://wonderment.readme.io/reference/authentication.md)
+- [Versioning](https://wonderment.readme.io/reference/versioning.md)
+- [Search shipments](https://wonderment.readme.io/reference/get_2022-10-shipments-search-searchterm.md): Search shipments for the authenticated shop by order name or tracking code. Requests require a Wonderment API access token with shipment read access. Some shops also require customer verification with the optional `t` query parameter.
+- [Examples](https://wonderment.readme.io/reference/examples.md): Headless Tracking Block Example
+- [List reports](https://wonderment.readme.io/reference/get_2022-10-reports.md): List report exports for the authenticated shop. Reports are returned newest first.
+- [Download report](https://wonderment.readme.io/reference/get_api-shipment-report-download-path.md): Download a finished report export by file name. Use the `name` value returned by the list reports endpoint, URL-encoded when it contains spaces or other special characters.
+- [Get delivery date predictions for shipping methods](https://wonderment.readme.io/reference/get_predictions.md)

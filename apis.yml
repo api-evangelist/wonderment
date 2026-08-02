@@ -1,27 +1,128 @@
 aid: wonderment
 name: Wonderment
-description: 'Wonderment is a company surfaced as a portfolio company of crv and added to the API Evangelist
-  network as a stub for enrichment. Sector: ecommerce. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Wonderment is a post-purchase order-tracking and shipment-visibility platform
+  for ecommerce brands (built for Shopify), now part of Loop as Loop Tracking.
+  It ingests carrier tracking data, surfaces proactive delivery updates, powers
+  branded self-serve tracking pages, and reports on shipment performance. The
+  public REST API (versioned 2022-10, hosted at api.wonderment.com) lets
+  merchants search shipments by order name or tracking code, list and download
+  shipment report exports, and fetch delivery-date predictions for shipping
+  methods, plus webhooks for shipping events. Originally a CRV-backed company,
+  added to the API Evangelist network and enriched from its ReadMe developer hub.
 url: https://raw.githubusercontent.com/api-evangelist/wonderment/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.wonderment.com/
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - crv
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-acquired-by: loop
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ecommerce
-apis: []
+- Order Tracking
+- Post-Purchase
+- Shipping
+- Logistics
+- Shopify
+- Webhooks
+apis:
+- aid: wonderment:wonderment-delivery-promise-api
+  name: Wonderment Delivery Promise API
+  description: Delivery-date predictions for shipping methods.
+  humanURL: https://wonderment.readme.io/reference/overview
+  baseURL: https://api.wonderment.com
+  tags:
+  - Delivery Promise
+  properties:
+  - type: OpenAPI
+    url: openapi/wonderment-delivery-promise-api-openapi.yml
+- aid: wonderment:wonderment-reports-api
+  name: Wonderment Reports API
+  description: List and download shipment report exports.
+  humanURL: https://wonderment.readme.io/reference/overview
+  baseURL: https://api.wonderment.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/wonderment-reports-api-openapi.yml
+- aid: wonderment:wonderment-shipments-api
+  name: Wonderment Shipments API
+  description: Search shipments and tracking events for the authenticated shop.
+  humanURL: https://wonderment.readme.io/reference/overview
+  baseURL: https://api.wonderment.com
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/wonderment-shipments-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Documentation
+  url: https://wonderment.readme.io/
+- type: APIReference
+  url: https://wonderment.readme.io/reference/overview
+- type: GettingStarted
+  url: https://help.wonderment.com/en/categories/1026689-getting-started-with-track
+- type: Support
+  url: https://help.wonderment.com/
+- type: Login
+  url: https://app.wonderment.com/
+- type: LLMsTxt
+  url: llms/wonderment-llms.txt
+- type: MCPServer
+  url: mcp/wonderment-mcp.yml
+- type: Authentication
+  url: authentication/wonderment-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/wonderment-agentic-access.yml
+- type: Conventions
+  url: conventions/wonderment-conventions.yml
+- type: ErrorCatalog
+  url: errors/wonderment-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/wonderment-lifecycle.yml
+- type: Conformance
+  url: conformance/wonderment-conformance.yml
+- type: DataModel
+  url: data-model/wonderment-data-model.yml
+- type: Components
+  url: components/wonderment-components.yml
+- type: Webhooks
+  url: asyncapi/wonderment-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Export and download a shipment report
+  url: arazzo/wonderment-report-export.yml
+- type: DomainSecurity
+  url: security/wonderment-domain-security.yml
 - type: Website
   url: https://www.wonderment.com/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

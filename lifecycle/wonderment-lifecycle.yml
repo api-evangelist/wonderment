@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://wonderment.readme.io/reference/versioning
+versioning:
+  scheme: uri-path-dated
+  current: '2022-10'
+  docs: https://wonderment.readme.io/reference/versioning
+  note: >-
+    Backwards-incompatible changes ship as a new dated version. The same token
+    works across versions. The version is declared explicitly in the request URL
+    path, e.g. /2022-10/shipments/search/8675309.
+backwards_compatible_changes:
+- Adding new API resources.
+- Adding new optional request parameters to existing methods.
+- Adding new properties to existing responses.
+- Changing the order of properties in responses.
+- Changing length/format of opaque strings (error messages, human-readable strings).
+- Adding new webhook event types (listeners should handle unfamiliar types gracefully).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No explicit deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+status_page:
+  url: null
+  note: >-
+    status.wonderment.com was linked from the acquisition page but no longer
+    resolves (DNS NXDOMAIN as of 2026-07-21) — no StatusPage pointer emitted.
+sla:
+  url: null
+deprecated_operations: []

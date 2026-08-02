@@ -1,0 +1,54 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/wonderment-openapi.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 4
+  by_action_class:
+    connected: 4
+  by_consequence:
+    read: 4
+  human_in_the_loop_required: 0
+operations:
+- path: /2022-10/shipments/search/{searchTerm}
+  method: get
+  operationId: searchShipments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /2022-10/reports
+  method: get
+  operationId: listReports
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/shipment/report/download/{path}
+  method: get
+  operationId: downloadReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /predictions
+  method: get
+  operationId: getDeliveryPredictions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

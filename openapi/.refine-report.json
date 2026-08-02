@@ -1,0 +1,18 @@
+{
+  "provider": "wonderment",
+  "sources": [
+    "wonderment-delivery-promise-api-openapi.yml",
+    "wonderment-reports-api-openapi.yml",
+    "wonderment-shipments-api-openapi.yml"
+  ],
+  "outputs": [
+    "wonderment-delivery-promise-api-openapi.yml",
+    "wonderment-reports-api-openapi.yml",
+    "wonderment-shipments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,54 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wonderment-openapi.json
+note: >-
+  Entity-relationship graph derived from the harvested OpenAPI response schemas.
+  Wonderment tracks Shopify orders; the Order id is the numeric Shopify order id
+  (gid prefix stripped).
+entities:
+- name: ShipmentSearchResult
+  description: Top-level result of a shipment search (order name + its shipments).
+  fields: [name, shipments]
+- name: Shipment
+  description: A tracked shipment with carrier, ETA, service level, status and events.
+  fields: [trackingUrl, trackingCode, carrierName, eta, serviceLevel, order, statusDetails, events]
+- name: ServiceLevel
+  fields: [name, token]
+- name: Order
+  description: The Shopify order the shipment belongs to.
+  fields: [id, name]
+- name: ShipmentEvent
+  description: A single tracking event / scan.
+  fields: [trackingCode, details, status, substatus, date, city, state, zip, country, trackingUrl, eta]
+- name: Report
+  description: A shipment report export.
+  fields: [name, status, downloadUrl, createdAt, expiresAt, expired, rowCount, createdBy, scheduledReport]
+- name: ScheduledReport
+  fields: [frequencyTimeUnit, frequencyTimeAmount]
+- name: DeliveryPrediction
+  fields: [shippingMethod, estimatedDeliveryDate, minDate, maxDate]
+relationships:
+- from: ShipmentSearchResult
+  to: Shipment
+  kind: has_many
+  via: shipments
+- from: Shipment
+  to: Order
+  kind: belongs_to
+  via: order
+- from: Shipment
+  to: ServiceLevel
+  kind: has_one
+  via: serviceLevel
+- from: Shipment
+  to: ShipmentEvent
+  kind: has_many
+  via: events
+- from: Shipment
+  to: ShipmentEvent
+  kind: has_one
+  via: statusDetails
+- from: Report
+  to: ScheduledReport
+  kind: has_one
+  via: scheduledReport

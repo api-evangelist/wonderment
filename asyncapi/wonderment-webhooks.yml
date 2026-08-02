@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: searched
+source: https://help.wonderment.com/en/articles/4432129
+type: Webhooks
+note: >-
+  Wonderment publishes webhooks for shipping-related events but ships no AsyncAPI
+  document, so this captures the webhook catalog rather than an AsyncAPI spec.
+  Wonderment "sends data for many types of shipping-related events"; subscriptions
+  are configured per-webhook in the app and can filter which events are delivered.
+delivery:
+  transport: https-post
+  config: Wonderment App > Integrations > Webhooks > "Create a Webhook" (name + destination URL).
+  event_selection: Choose which events to receive, or keep all enabled (default).
+  test: Use the Send Test button; expect an HTTP 200 response.
+validation:
+  header: X-Wonderment-Token
+  note: >-
+    Each webhook is delivered with an X-Wonderment-Token header (also present as a
+    `token` field in the payload) to validate the webhook source is legitimate.
+availability: All paid plans.
+payload_fields:
+  tracking:
+  - status
+  - trackingCode
+  - trackingURL
+  - carrierName
+  - estimatedPackageDelivery
+  - serviceLevel
+  - serviceLevelFriendlyName
+  - hoursStalled
+  - notUpdatedSince
+  - businessDaysSinceFulfillmentCreated
+  order:
+  - orderNumber
+  - orderID
+  - destinationCountryCode
+  line_items:
+  - lineItemID
+  - sku
+  - quantity
+  - price
+  - discount
+  - taxable
+  - currencyCode
+  - productID
+  - productName
+  - productImage
+  - productImageAltText
+  - variantID
+  - variantName
+  - variantImage
+  - variantImageAltText
+  - weight
+  - weightUnit
+  security:
+  - token
+docs:
+- https://help.wonderment.com/en/articles/4432129
+- https://help.wonderment.com/en/articles/4432193

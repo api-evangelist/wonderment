@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Wonderment API
+  version: 1.0.0
+extends: openapi/wonderment-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-source: https://wonderment.readme.io/reference/overview
+    x-apievangelist-note: >-
+      Wonderment (now part of Loop) post-purchase order tracking API. Spec
+      assembled by API Evangelist from the per-operation OpenAPI blocks
+      published on the Wonderment ReadMe developer hub.
+- target: $.info
+  update:
+    x-agentic-access: agentic-access/wonderment-agentic-access.yml
+- target: $.tags
+  update:
+  - name: Delivery Promise
+    x-apievangelist-note: >-
+      Predictions service is published under the /delivery-promise base path,
+      captured as an operation-level server override on getDeliveryPredictions.

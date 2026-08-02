@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wonderment-openapi.json
+note: >-
+  Cross-cutting standards conformance derived from the harvested OpenAPI and the
+  Wonderment developer docs. No published compliance program (SOC 2 / ISO 27001)
+  was found on the Wonderment surface, so no Compliance pointer is emitted.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses an API-key header (X-Wonderment-Access-Token), not OAuth 2.0.
+- id: oidc
+  conforms: false
+- id: api-key-auth
+  conforms: true
+  evidence: securitySchemes apiKeyHeader (X-Wonderment-Access-Token, in header).
+- id: https-required
+  conforms: true
+  evidence: Docs state all requests must be made over HTTPS.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error bodies are plain JSON ({message} / {error}), not application/problem+json.
+- id: dated-versioning
+  conforms: true
+  evidence: Explicit dated API versions in the URL path (current 2022-10).
+- id: pagination
+  conforms: true
+  evidence: List reports supports a limit query parameter (1-500, default 100).
+- id: webhooks
+  conforms: true
+  evidence: Shipping-event webhooks with X-Wonderment-Token validation header.
+- id: json-api
+  conforms: false
+- id: fhir
+  conforms: false
+- id: scim
+  conforms: false

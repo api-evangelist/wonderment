@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/wonderment-openapi.json
+note: >-
+  No official Wonderment-hosted or remote MCP server was found (docs, npm
+  @modelcontextprotocol, MCP registries). This is a candidate tool list derived
+  one-per-operation from the harvested OpenAPI so an agent gateway can expose the
+  Wonderment tracking API. Auth is the X-Wonderment-Access-Token API key header.
+server:
+  name: wonderment
+  transport: http
+tools:
+- name: search_shipments
+  description: Search shipments for the authenticated shop by order name or tracking code.
+  source_operation: openapi/wonderment-openapi.json#searchShipments
+- name: list_reports
+  description: List shipment report exports for the authenticated shop, newest first.
+  source_operation: openapi/wonderment-openapi.json#listReports
+- name: download_report
+  description: Download a finished report export by file name.
+  source_operation: openapi/wonderment-openapi.json#downloadReport
+- name: get_delivery_predictions
+  description: Get delivery-date predictions for shipping methods to a destination zip.
+  source_operation: openapi/wonderment-openapi.json#getDeliveryPredictions

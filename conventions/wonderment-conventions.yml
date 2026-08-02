@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://wonderment.readme.io/reference/overview
+note: >-
+  Cross-cutting request/response semantics for the Wonderment tracking API,
+  captured from the ReadMe developer docs and derived from the harvested OpenAPI.
+authentication:
+  style: api-key-header
+  header: X-Wonderment-Access-Token
+  format: sk_live_<shop>_<secret>
+  transport: HTTPS required
+  ref: authentication/wonderment-authentication.yml
+versioning:
+  style: uri-path-dated
+  current: '2022-10'
+  ref: lifecycle/wonderment-lifecycle.yml
+pagination:
+  style: limit
+  params:
+    limit: Max results (1-500, default 100) — documented on List reports.
+  note: No cursor/offset pagination documented; this is a small read-oriented API.
+idempotency:
+  supported: false
+  note: >-
+    Read-only (GET) API surface; no write operations and no documented
+    idempotency-key header. No Idempotency pointer emitted.
+error_envelope:
+  shapes:
+  - '{"message": "string"}'
+  - '{"error": "string"}'
+  format: custom-json
+  ref: errors/wonderment-problem-types.yml
+webhooks:
+  validation_header: X-Wonderment-Token
+  config: Managed in the Wonderment App under Settings/Integrations > Webhooks.
+  ref: asyncapi/wonderment-webhooks.yml
+rate_limiting:
+  documented: false
+  note: No rate-limit headers or published limits found in the docs.
+request_tracing:
+  documented: false
