@@ -2,11 +2,10 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/wonderment-openapi.json
-note: >-
-  No official Wonderment-hosted or remote MCP server was found (docs, npm
-  @modelcontextprotocol, MCP registries). This is a candidate tool list derived
-  one-per-operation from the harvested OpenAPI so an agent gateway can expose the
-  Wonderment tracking API. Auth is the X-Wonderment-Access-Token API key header.
+note: No official Wonderment-hosted or remote MCP server was found (docs, npm @modelcontextprotocol, MCP
+  registries). This is a candidate tool list derived one-per-operation from the harvested OpenAPI so an
+  agent gateway can expose the Wonderment tracking API. Auth is the X-Wonderment-Access-Token API key
+  header.
 server:
   name: wonderment
   transport: http
@@ -23,3 +22,9 @@ tools:
 - name: get_delivery_predictions
   description: Get delivery-date predictions for shipping methods to a destination zip.
   source_operation: openapi/wonderment-openapi.json#getDeliveryPredictions
+deployment:
+  mode: none
+  verified: derived
+  tools: 4
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "ebbebef6-9bce-4595-a20a-daac693591c1",
+      "name": "Shipments",
+      "description": {
+        "content": "Search shipments and tracking events for the authenticated shop.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1dade6e3-8fc4-4f3b-89e0-1892ff8bcb27",
+          "name": "Search shipments",
+          "request": {
+            "name": "Search shipments",
+            "description": {
+              "content": "Search shipments for the authenticated shop by order name or tracking code. Requests require a Wonderment API access token with shipment read access. Some shops also require customer verification with the optional `t` query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2022-10",
+                "shipments",
+                "search",
+                ":searchTerm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "t",
+                  "value": "<string>",
+                  "description": "Base64-encoded customer verification payload. When provided, it can override `searchTerm` with its `query` value and should include the customer `email` or `phone`. Required only when customer search authentication is enabled for the shop."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "searchTerm",
+                  "description": "(Required) Order name or tracking code associated with the shipment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12366b51-f447-4aea-b4d0-dfcb4739d6d2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2022-10",
+                    "shipments",
+                    "search",
+                    ":searchTerm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "t",
+                      "value": "eyJxdWVyeSI6IjEwMDEiLCJlbWFpbCI6ImN1c3RvbWVyQGV4YW1wbGUuY29tIn0="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchTerm",
+                      "description": "(Required) Order name or tracking code associated with the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"#1001\",\n  \"shipments\": [\n    {\n      \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345\",\n      \"trackingCode\": \"9400111206213767912345\",\n      \"carrierName\": \"USPS\",\n      \"eta\": \"2026-04-24\",\n      \"serviceLevel\": {\n        \"name\": \"USPS Ground Advantage\",\n        \"token\": \"usps_ground_advantage\"\n      },\n      \"order\": {\n        \"id\": \"1234567890\",\n        \"name\": \"#1001\"\n      },\n      \"statusDetails\": {\n        \"trackingCode\": \"9400111206213767912345\",\n        \"details\": \"Delivered, In/At Mailbox\",\n        \"status\": \"DELIVERED\",\n        \"substatus\": \"delivered\",\n        \"date\": \"2026-04-24T14:32:00\",\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"zip\": \"78701\",\n        \"country\": \"US\",\n        \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345\",\n        \"eta\": \"2026-04-24\",\n        \"createdAt\": \"2026-04-24T14:36:12+0000\",\n        \"locationDisplay\": \"Austin, TX, 78701, US\",\n        \"isTimezoneProvided\": false,\n        \"displayTimezone\": \"America/Chicago\"\n      },\n      \"events\": [\n        {\n          \"trackingCode\": \"9400111206213767912345\",\n          \"details\": \"Shipping label created\",\n          \"status\": \"PRE_TRANSIT\",\n          \"substatus\": \"information_received\",\n          \"date\": \"2026-04-21T09:15:00\",\n          \"city\": \"Austin\",\n          \"state\": \"TX\",\n          \"zip\": \"78701\",\n          \"country\": \"US\",\n          \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345\",\n          \"eta\": \"2026-04-24\",\n          \"createdAt\": \"2026-04-21T09:18:03+0000\",\n          \"locationDisplay\": \"Austin, TX, 78701, US\",\n          \"isTimezoneProvided\": false,\n          \"displayTimezone\": \"America/Chicago\"\n        },\n        {\n          \"trackingCode\": \"9400111206213767912345\",\n          \"details\": \"Delivered, In/At Mailbox\",\n          \"status\": \"DELIVERED\",\n          \"substatus\": \"delivered\",\n          \"date\": \"2026-04-24T14:32:00\",\n          \"city\": \"Austin\",\n          \"state\": \"TX\",\n          \"zip\": \"78701\",\n          \"country\": \"US\",\n          \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111206213767912345\",\n          \"eta\": \"2026-04-24\",\n          \"createdAt\": \"2026-04-24T14:36:12+0000\",\n          \"locationDisplay\": \"Austin, TX, 78701, US\",\n          \"isTimezoneProvided\": false,\n          \"displayTimezone\": \"America/Chicago\"\n        }\n      ],\n      \"lineItems\": [\n        {\n          \"trackingCode\": \"9400111206213767912345\",\n          \"lineItemId\": \"9876543210\",\n          \"productImage\": \"https://cdn.shopify.com/s/files/example/product.jpg\",\n          \"productName\": \"Wonderment T-Shirt\",\n          \"variantName\": \"Medium / Black\",\n          \"variantImage\": \"https://cdn.shopify.com/s/files/example/variant.jpg\",\n          \"sku\": \"WM-TSHIRT-M-BLK\",\n          \"quantity\": 1\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7527c388-c996-461e-87a8-1ca43aa3a66e",
+              "name": "Missing or invalid search term.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2022-10",
+                    "shipments",
+                    "search",
+                    ":searchTerm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "t",
+                      "value": "eyJxdWVyeSI6IjEwMDEiLCJlbWFpbCI6ImN1c3RvbWVyQGV4YW1wbGUuY29tIn0="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchTerm",
+                      "description": "(Required) Order name or tracking code associated with the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid request. Must include search term.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66fc2db0-1067-4f10-b715-66c7ecd58e85",
+              "name": "Authentication failed or customer verification failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2022-10",
+                    "shipments",
+                    "search",
+                    ":searchTerm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "t",
+                      "value": "eyJxdWVyeSI6IjEwMDEiLCJlbWFpbCI6ImN1c3RvbWVyQGV4YW1wbGUuY29tIn0="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchTerm",
+                      "description": "(Required) Order name or tracking code associated with the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"401: Authentication Failed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bb0ff7d-4813-4b7c-81ab-07c58ae06d29",
+              "name": "Shop does not have an active paid plan for API access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2022-10",
+                    "shipments",
+                    "search",
+                    ":searchTerm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "t",
+                      "value": "eyJxdWVyeSI6IjEwMDEiLCJlbWFpbCI6ImN1c3RvbWVyQGV4YW1wbGUuY29tIn0="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchTerm",
+                      "description": "(Required) Order name or tracking code associated with the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Upgrade to a Wonderment paid plan for access.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6cfdc5f-030d-4fd2-ad4e-1864cb9f7553",
+              "name": "Token does not include shipment read access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2022-10",
+                    "shipments",
+                    "search",
+                    ":searchTerm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "t",
+                      "value": "eyJxdWVyeSI6IjEwMDEiLCJlbWFpbCI6ImN1c3RvbWVyQGV4YW1wbGUuY29tIn0="
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchTerm",
+                      "description": "(Required) Order name or tracking code associated with the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wonderment.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Wonderment-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "52a3bce9-1287-471b-b232-cc17b17d233f",
+    "name": "Wonderment Delivery Promise Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.\n\nContact Support:\n Name: Wonderment Support",
+      "type": "text/plain"
+    }
+  }
+}

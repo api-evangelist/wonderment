@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wonderment Delivery Promise API",
+    "version": "2022-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Wonderment-Access-Token",
+      "value": "{{X-Wonderment-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delivery Promise",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get delivery date predictions for shipping methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wonderment.com/predictions",
+            "params": [
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query",
+                "description": "Destination zip code"
+              },
+              {
+                "name": "shipping_methods",
+                "value": "",
+                "type": "query",
+                "description": "Array of shipping method names to get predictions for"
+              },
+              {
+                "name": "variant_ids",
+                "value": "",
+                "type": "query",
+                "description": "Array of product variant IDs"
+              }
+            ]
+          },
+          "docs": "Get delivery date predictions for shipping methods"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

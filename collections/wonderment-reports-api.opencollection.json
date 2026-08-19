@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wonderment Delivery Promise Reports API",
+    "version": "2022-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Wonderment-Access-Token",
+      "value": "{{X-Wonderment-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wonderment.com/2022-10/reports",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of reports to return. Defaults to 100. Must be between 1 and 500."
+              }
+            ]
+          },
+          "docs": "List report exports for the authenticated shop. Reports are returned newest first."
+        },
+        {
+          "info": {
+            "name": "Download report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wonderment.com/api/shipment/report/download/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "URL-encoded report file name returned as `name` from the list reports endpoint."
+              }
+            ]
+          },
+          "docs": "Download a finished report export by file name. Use the `name` value returned by the list reports endpoint, URL-encoded when it contains spaces or other special characters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

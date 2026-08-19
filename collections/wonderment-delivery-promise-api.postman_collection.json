@@ -1,0 +1,320 @@
+{
+  "item": [
+    {
+      "id": "503c7453-489b-40d1-aed6-4c5d95a027d8",
+      "name": "Delivery Promise",
+      "description": {
+        "content": "Delivery-date predictions for shipping methods.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91e29c3f-90e9-4edd-b884-5c55de9bc327",
+          "name": "Get delivery date predictions for shipping methods",
+          "request": {
+            "name": "Get delivery date predictions for shipping methods",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "delivery-promise",
+                "predictions"
+              ],
+              "host": [
+                "api",
+                "wonderment",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>",
+                  "description": "(Required) Destination zip code"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipping_methods",
+                  "value": "<string>",
+                  "description": "Array of shipping method names to get predictions for"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipping_methods",
+                  "value": "<string>",
+                  "description": "Array of shipping method names to get predictions for"
+                },
+                {
+                  "disabled": false,
+                  "key": "variant_ids",
+                  "value": "<string>",
+                  "description": "Array of product variant IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "variant_ids",
+                  "value": "<string>",
+                  "description": "Array of product variant IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98105c4e-a825-4276-83aa-e4eee65e7049",
+              "name": "Successful response with delivery predictions",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "delivery-promise",
+                    "predictions"
+                  ],
+                  "host": [
+                    "api",
+                    "wonderment",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"predictions\": [\n    {\n      \"shippingMethod\": \"string\",\n      \"estimatedDeliveryDate\": \"2007-05-14T06:41:56.238Z\",\n      \"minDate\": \"1974-03-07T09:48:25.451Z\",\n      \"maxDate\": \"1980-04-30T03:01:03.113Z\"\n    },\n    {\n      \"shippingMethod\": \"string\",\n      \"estimatedDeliveryDate\": \"1974-05-05T11:27:22.602Z\",\n      \"minDate\": \"2023-12-12T22:52:55.947Z\",\n      \"maxDate\": \"1947-05-06T08:56:30.573Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adfc3d54-76ab-406b-865b-6ec5e361ce6a",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "delivery-promise",
+                    "predictions"
+                  ],
+                  "host": [
+                    "api",
+                    "wonderment",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "827f2daa-e928-45cb-aab9-5006c6b6ac57",
+              "name": "No predictions found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "delivery-promise",
+                    "predictions"
+                  ],
+                  "host": [
+                    "api",
+                    "wonderment",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Wonderment-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wonderment.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Wonderment-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cfd3452b-e7b9-4855-a3b3-8e7c534c1016",
+    "name": "Wonderment Delivery Promise API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.\n\nContact Support:\n Name: Wonderment Support",
+      "type": "text/plain"
+    }
+  }
+}

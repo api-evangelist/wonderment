@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wonderment Delivery Promise Shipments API",
+    "version": "2022-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Wonderment-Access-Token",
+      "value": "{{X-Wonderment-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wonderment.com/2022-10/shipments/search/:searchTerm",
+            "params": [
+              {
+                "name": "searchTerm",
+                "value": "",
+                "type": "path",
+                "description": "Order name or tracking code associated with the shipment."
+              },
+              {
+                "name": "t",
+                "value": "",
+                "type": "query",
+                "description": "Base64-encoded customer verification payload. When provided, it can override `searchTerm` with its `query` value and should include the customer `email` or `phone`. Required only when customer search authentication is enabled for the shop."
+              }
+            ]
+          },
+          "docs": "Search shipments for the authenticated shop by order name or tracking code. Requests require a Wonderment API access token with shipment read access. Some shops also require customer verification with the optional `t` query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
