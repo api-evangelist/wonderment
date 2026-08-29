@@ -6,8 +6,8 @@ info:
     List the authenticated shop's shipment report exports and download the most
     recent finished, non-expired report.
 sourceDescriptions:
-- name: wondermentApi
-  url: ../openapi/wonderment-openapi.json
+- name: reportsApi
+  url: ../openapi/wonderment-reports-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: exportAndDownloadReport
