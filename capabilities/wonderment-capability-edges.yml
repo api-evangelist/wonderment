@@ -1,0 +1,34 @@
+slug: wonderment
+provider: Wonderment
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Delivery Promise
+  spec_file: wonderment-delivery-promise-api-openapi.yml
+  capability_id: BC-2510.30
+  capability_id_l1: BC-2510
+  capability_name: ETA Prediction Management
+  confidence: 0.85
+  evidence: GET /predictions getDeliveryPredictions "Get delivery date predictions for shipping methods"
+  reason: The single operation computes predicted delivery dates per shipping method, which is precisely
+    ETA prediction within a shipment-visibility platform.
+- tag: Shipments
+  spec_file: wonderment-shipments-api-openapi.yml
+  capability_id: BC-2510.20
+  capability_id_l1: BC-2510
+  capability_name: Shipment Tracking Management
+  confidence: 0.72
+  evidence: GET /2022-10/shipments/search/{searchTerm} searchShipments; "post-purchase order tracking
+    and shipment visibility platform"
+  reason: Lookup of shipments in a tracking platform whose purpose is resolving and presenting shipment
+    status to merchants and customers. Search is a thin surface, so confidence is moderate.

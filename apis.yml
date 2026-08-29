@@ -101,6 +101,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/wonderment-capability-edges.yml
+  name: Wonderment Business Capability Map
 - type: Overlay
   url: overlays/wonderment-openapi-overlay.yaml
 - type: Documentation
