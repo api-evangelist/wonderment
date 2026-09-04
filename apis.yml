@@ -25,15 +25,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  - {url: 'https://www.wonderment.com/', status: 302, note: 'declared website redirects to https://www.loopreturns.com/wonderment-is-now-loop-tracking/ — a different registrable domain (wonderment.com -> loopreturns.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-03'
   method: derived
 image: https://www.wonderment.com/
 x-type: company
@@ -118,8 +120,9 @@ common:
   url: https://app.wonderment.com/
 - type: LLMsTxt
   url: llms/wonderment-llms.txt
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/wonderment-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Authentication
   url: authentication/wonderment-authentication.yml
 - type: AgenticAccess
