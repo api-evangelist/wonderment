@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wonderment Delivery Promise Reports API
+  title: Wonderment Reports API
   description: Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.
   version: 2022-10
   contact:
@@ -48,35 +48,43 @@ paths:
                       type: string
                       description: Report export status, such as finished.
                     downloadUrl:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       description: Download URL for finished, unexpired reports.
                     createdAt:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       format: date-time
-                      nullable: true
                     expiresAt:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       format: date-time
-                      nullable: true
                     expired:
                       type: boolean
                     rowCount:
-                      type: integer
-                      nullable: true
+                      type:
+                      - integer
+                      - 'null'
                     createdBy:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                     scheduledReport:
-                      type: object
-                      nullable: true
+                      type:
+                      - object
+                      - 'null'
                       properties:
                         frequencyTimeUnit:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         frequencyTimeAmount:
-                          type: integer
-                          nullable: true
+                          type:
+                          - integer
+                          - 'null'
               example:
               - name: 20260407T123906_shipments_report.csv.zip
                 status: finished

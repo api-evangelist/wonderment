@@ -1,9 +1,7 @@
 {
   "provider": "wonderment",
   "sources": [
-    "wonderment-delivery-promise-api-openapi.yml",
-    "wonderment-reports-api-openapi.yml",
-    "wonderment-shipments-api-openapi.yml"
+    "_original/wonderment-openapi.json"
   ],
   "outputs": [
     "wonderment-delivery-promise-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wonderment-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "wonderment-delivery-promise-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wonderment-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wonderment-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

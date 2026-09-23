@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Wonderment Delivery Promise API
   description: Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.

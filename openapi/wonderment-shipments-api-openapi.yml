@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wonderment Delivery Promise Shipments API
+  title: Wonderment Shipments API
   description: Wonderment is a post-purchase order tracking and shipment visibility platform for ecommerce (now part of Loop). The REST API exposes shipment search, report exports, and delivery-date predictions for the authenticated Shopify shop. Assembled by API Evangelist from the per-operation OpenAPI blocks published on the Wonderment ReadMe developer hub.
   version: 2022-10
   contact:
@@ -40,8 +40,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                nullable: true
+                type:
+                - object
+                - 'null'
                 description: Returns null when no matching order or tracking code is found.
                 properties:
                   name:
@@ -53,15 +54,17 @@ paths:
                       type: object
                       properties:
                         trackingUrl:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         trackingCode:
                           type: string
                         carrierName:
                           type: string
                         eta:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           description: Estimated delivery timestamp when available. Pending fallback responses may return the literal value pending.
                         serviceLevel:
                           type: object
@@ -96,38 +99,48 @@ paths:
                               type: string
                               description: Event timestamp. When timezone data is available, this uses the event timezone value.
                             city:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             state:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             zip:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             country:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             trackingUrl:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             eta:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             isTimezoneProvided:
-                              type: boolean
-                              nullable: true
+                              type:
+                              - boolean
+                              - 'null'
                               description: Whether the event timestamp included an explicit timezone.
                             displayTimezone:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                               description: Display timezone for the event location, when available.
                             createdAt:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                               description: Timestamp when the event was stored.
                             locationDisplay:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                           description: Most recent shipment event. Omitted when the shipment has no non-expired events.
                         events:
                           type: array
@@ -148,38 +161,48 @@ paths:
                                 type: string
                                 description: Event timestamp. When timezone data is available, this uses the event timezone value.
                               city:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               state:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               zip:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               country:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               trackingUrl:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               eta:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               isTimezoneProvided:
-                                type: boolean
-                                nullable: true
+                                type:
+                                - boolean
+                                - 'null'
                                 description: Whether the event timestamp included an explicit timezone.
                               displayTimezone:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                                 description: Display timezone for the event location, when available.
                               createdAt:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                                 description: Timestamp when the event was stored.
                               locationDisplay:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                         lineItems:
                           type: array
                           items:
@@ -191,31 +214,37 @@ paths:
                                 type: string
                                 description: Numeric Shopify line item ID, returned without the gid://shopify/LineItem/ prefix.
                               productImage:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                                 description: Image URL when available; may be an empty string.
                               productName:
                                 type: string
                                 description: Product title stored from Shopify.
                               variantName:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                                 description: Variant title stored from Shopify; may be an empty string.
                               variantImage:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                                 description: Image URL when available; may be an empty string.
                               sku:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                                 description: SKU stored from Shopify; may be an empty string.
                               quantity:
-                                type: integer
-                                nullable: true
+                                type:
+                                - integer
+                                - 'null'
                                 description: Fulfilled quantity for this line item when available, otherwise the order line item quantity.
                         date:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           description: Present for pending/unfulfilled order fallback responses; ISO timestamp when included.
               examples:
                 found:
